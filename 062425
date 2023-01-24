@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Loan Offset Calculator</title>
+  </head>
+  <body>
+    <h1>Home Loan Offset Calculator</h1>
+    <form>
+      <label for="loan-balance">Loan Balance:</label>
+      <input type="text" id="loan-balance" name="loan-balance">
+      <br>
+      <label for="interest-rate">Interest Rate:</label>
+      <input type="text" id="interest-rate" name="interest-rate">
+      <br>
+      <label for="offset-account">Offset Account Balance:</label>
+      <input type="text" id="offset-account" name="offset-account">
+      <br>
+      <label for="minimum-repayment">Minimum Monthly Repayment:</label>
+      <input type="text" id="minimum-repayment" name="minimum-repayment">
+      <br>
+      <button type="button" onclick="calculate()">Calculate</button>
+    </form>
+    <br>
+    <p id="result"></p>
+    <script>
+      function calculate() {
+        // Get the loan balance, interest rate, offset account balance, and minimum repayment from the form
+        var loanBalance = document.getElementById("loan-balance").value;
+        var interestRate = document.getElementById("interest-rate").value;
+        var offsetAccount = document.getElementById("offset-account").value;
+        var minimumRepayment = document.getElementById("minimum-repayment").value;
+        // Calculate the new interest charged on the loan using the offset account
+        var newInterest = (loanBalance - offsetAccount) * (interestRate / 100);
+        // Calculate the total amount of interest paid over the life of the loan
+        var totalInterest = newInterest * (loanBalance / minimumRepayment);
+        // Calculate the time it would take to pay off the loan using the offset account
+        var timeToPayOff = totalInterest / minimumRepayment;
+        // Display the result
+        document.getElementById("result").innerHTML = "It would take " + timeToPayOff + " months to pay off your home loan using an offset account.";
+      }
+    </script>
+  </body>
+</html>
